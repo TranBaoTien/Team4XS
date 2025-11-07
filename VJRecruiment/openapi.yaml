@@ -13,10 +13,9 @@ info:
   #   name: MIT
   #   url: "https://opensource.org/license/mit/"
 servers:
-  - url: "https://vj-dev.com/api"
+  - url: "https://vjrecruiment-dev.com/api"
     description: "Dev server (VJ)"
-  - url: "https://damcamau-dev.com/api"
-    description: "Dev server (Đam Cà Mau)"
+    x-default: true
 x-tagGroups:
   - name: VJRecruiment
     tags:
