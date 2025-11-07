@@ -719,10 +719,19 @@ components:
             $ref: '#/components/schemas/Error'
 tags:
   - name: VJRecruiment
-    description: 4XS VJ Portal Recruiment HR
+    description: 4XS VJ Portal Recruitment HR
+  - name: GetVJRecruiment
+    description: API lấy danh sách bài viết tuyển dụng VJ
+  - name: PostVJRecruiment
+    description: API tạo mới bài viết tuyển dụng VJ
   - name: VJGrooming
-    description: 4XS portal for VJ grooming
+    description: 4XS Portal for VJ grooming
+  - name: CreateVJGrooming
+    description: API tạo dữ liệu grooming
+  - name: UpdateVJGrooming
+    description: API cập nhật dữ liệu grooming
   - name: SascoPortal
     description: Project 4XS for SASCO
+
 security:
   - MuseumPlaceholderAuth: []
