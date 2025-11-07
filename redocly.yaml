@@ -1,6 +1,10 @@
 apis:
-  main:
-    root: ./openapi.yaml
+  vj:
+    root: ./apis/VJRecruiment.yaml
+  grooming:
+    root: ./apis/VJGrooming.yaml
+  sasco:
+    root: ./apis/SascoPortal.yaml
 extends:
   - minimal
 rules:
