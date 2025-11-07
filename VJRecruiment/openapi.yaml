@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: 4XS Document API VJGrooming
+  title: 4XS Document API VJRecruiment
   description: |
     Đây là API tài liệu của hệ thống Team4XS.
     Bạn có thể dùng các endpoint dưới đây để thao tác dữ liệu.
