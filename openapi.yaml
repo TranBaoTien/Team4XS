@@ -5,15 +5,28 @@ info:
     Đây là API tài liệu của hệ thống Team4XS.
     Bạn có thể dùng các endpoint dưới đây để thao tác dữ liệu.
   version: 1.1.1
-  termsOfService: 'https://redocly.com/subscription-agreement/'
+  # termsOfService: 'https://redocly.com/subscription-agreement/'
   contact:
-    email: team@redocly.com
-    url: "https://redocly.com/docs/cli/"
-  license:
-    name: MIT
-    url: "https://opensource.org/license/mit/"
+    email: Team4XS@gmail.com
+    url: "https://team4xs.redocly.app/"
+  # license:
+  #   name: MIT
+  #   url: "https://opensource.org/license/mit/"
 servers:
-  - url: "https://api.fake-museum-example.com/v1.1"
+  - url: "https://vj-dev.com/api"
+    description: "Dev server (VJ)"
+  - url: "https://damcamau-dev.com/api"
+    description: "Dev server (Đam Cà Mau)"
+x-tagGroups:
+  - name: VJRecruiment
+    tags:
+      - GetVJRecruiment
+      - PostVJRecruiment
+  - name: VJGrooming
+    tags:
+      - CreateVJGrooming
+      - UpdateVJGrooming
+
 paths:
   /museum-hours:
     get:
@@ -21,7 +34,7 @@ paths:
       description: Get upcoming museum operating hours.
       operationId: getMuseumHours
       tags:
-        - Operations
+        - GetVJRecruiment
       parameters:
         - $ref: "#/components/parameters/StartDate"
         - $ref: "#/components/parameters/PaginationPage"
@@ -46,7 +59,7 @@ paths:
       description: Creates a new special event for the museum.
       operationId: createSpecialEvent
       tags:
-        - Events
+        - PostVJRecruiment
       requestBody:
         required: true
         content:
@@ -75,7 +88,7 @@ paths:
       description: Return a list of upcoming special events at the museum.
       operationId: listSpecialEvents
       tags:
-        - Events
+        - PostVJRecruiment
       parameters:
         - $ref: "#/components/parameters/StartDate"
         - $ref: "#/components/parameters/EndDate"
@@ -101,7 +114,7 @@ paths:
       description: Get details about a special event.
       operationId: getSpecialEvent
       tags:
-        - Events
+        - UpdateVJGrooming
       parameters:
         - $ref: "#/components/parameters/EventId"
       responses:
@@ -123,7 +136,7 @@ paths:
       description: Update the details of a special event.
       operationId: updateSpecialEvent
       tags:
-        - Events
+        - UpdateVJGrooming
       parameters:
         - $ref: "#/components/parameters/EventId"
       requestBody:
@@ -154,7 +167,7 @@ paths:
       description: Delete a special event from the collection. Allows museum to cancel planned events.
       operationId: deleteSpecialEvent
       tags:
-        - Events
+        - UpdateVJGrooming
       parameters:
         - $ref: "#/components/parameters/EventId"
       responses:
@@ -172,7 +185,7 @@ paths:
       description: Purchase museum tickets for general entry or special events.
       operationId: buyMuseumTickets
       tags:
-        - Tickets
+        - SascoPortal
       requestBody:
         required: true
         content:
@@ -206,7 +219,7 @@ paths:
       description: Return an image of your ticket with scannable QR code. Used for event entry.
       operationId: getTicketCode
       tags:
-        - Tickets
+        - SascoPortal
       parameters:
         - $ref: "#/components/parameters/TicketId"
       responses:
@@ -705,11 +718,11 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
 tags:
-  - name: Operations
-    description: Operational information about the museum.
-  - name: Events
-    description: Special events hosted by the museum.
-  - name: Tickets
-    description: Museum tickets for general entrance or special events.
+  - name: VJRecruiment
+    description: 4XS VJ Portal Recruiment HR
+  - name: VJGrooming
+    description: 4XS portal for VJ grooming
+  - name: SascoPortal
+    description: Project 4XS for SASCO
 security:
   - MuseumPlaceholderAuth: []
