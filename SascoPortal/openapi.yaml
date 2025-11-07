@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: 4XS Document API VJRecruiment
+  title: 4XS Document API SascoPortal
   description: |
     Đây là API tài liệu của hệ thống Team4XS.
     Bạn có thể dùng các endpoint dưới đây để thao tác dữ liệu.
@@ -14,160 +14,9 @@ info:
   #   url: "https://opensource.org/license/mit/"
 servers:
   - url: "https://sasco-dev.com/api"
-    description: "Dev server (VJ)"
+    description: "Dev server (sasco)"
     x-default: true
 paths:
-  /museum-hours:
-    get:
-      summary: Get museum hours
-      description: Get upcoming museum operating hours.
-      operationId: getMuseumHours
-      tags:
-        - GetVJRecruiment
-      parameters:
-        - $ref: "#/components/parameters/StartDate"
-        - $ref: "#/components/parameters/PaginationPage"
-        - $ref: "#/components/parameters/PaginationLimit"
-      responses:
-        "200":
-          description: Success.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetMuseumHoursResponse"
-              examples:
-                default_example:
-                  $ref: "#/components/examples/GetMuseumHoursResponseExample"
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "404":
-          $ref: '#/components/responses/NotFound'
-  /special-events:
-    post:
-      summary: Create special events
-      description: Creates a new special event for the museum.
-      operationId: createSpecialEvent
-      tags:
-        - PostVJRecruiment
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CreateSpecialEventRequest"
-            examples:
-              default_example:
-                $ref: "#/components/examples/CreateSpecialEventRequestExample"
-      responses:
-        "201":
-          description: Created.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SpecialEventResponse"
-              examples:
-                default_example:
-                  $ref: "#/components/examples/CreateSpecialEventResponseExample"
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "404":
-          $ref: '#/components/responses/NotFound'
-    get:
-      summary: List special events
-      description: Return a list of upcoming special events at the museum.
-      operationId: listSpecialEvents
-      tags:
-        - PostVJRecruiment
-      parameters:
-        - $ref: "#/components/parameters/StartDate"
-        - $ref: "#/components/parameters/EndDate"
-        - $ref: "#/components/parameters/PaginationPage"
-        - $ref: "#/components/parameters/PaginationLimit"
-      responses:
-        "200":
-          description: Success.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ListSpecialEventsResponse"
-              examples:
-                default_example:
-                  $ref: "#/components/examples/ListSpecialEventsResponseExample"
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "404":
-          $ref: '#/components/responses/NotFound'
-  /special-events/{eventId}:
-    get:
-      summary: Get special event
-      description: Get details about a special event.
-      operationId: getSpecialEvent
-      tags:
-        - UpdateVJGrooming
-      parameters:
-        - $ref: "#/components/parameters/EventId"
-      responses:
-        "200":
-          description: Success.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SpecialEventResponse"
-              examples:
-                default_example:
-                  $ref: "#/components/examples/GetSpecialEventResponseExample"
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "404":
-          $ref: '#/components/responses/NotFound'
-    patch:
-      summary: Update special event
-      description: Update the details of a special event.
-      operationId: updateSpecialEvent
-      tags:
-        - UpdateVJGrooming
-      parameters:
-        - $ref: "#/components/parameters/EventId"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UpdateSpecialEventRequest"
-            examples:
-              default_example:
-                $ref: "#/components/examples/UpdateSpecialEventRequestExample"
-      responses:
-        "200":
-          description: Success.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SpecialEventResponse"
-              examples:
-                default_example:
-                  $ref: "#/components/examples/UpdateSpecialEventResponseExample"
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "404":
-          $ref: '#/components/responses/NotFound'
-    delete:
-      summary: Delete special event
-      description: Delete a special event from the collection. Allows museum to cancel planned events.
-      operationId: deleteSpecialEvent
-      tags:
-        - UpdateVJGrooming
-      parameters:
-        - $ref: "#/components/parameters/EventId"
-      responses:
-        "204":
-          description: Success - no content.
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "401":
-          $ref: '#/components/responses/Unauthorized'
-        "404":
-          $ref: '#/components/responses/NotFound'
   /tickets:
     post:
       summary: Buy museum tickets
@@ -707,18 +556,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
 tags:
-  - name: VJRecruiment
-    description: 4XS VJ Portal Recruitment HR
-  - name: GetVJRecruiment
-    description: API lấy danh sách bài viết tuyển dụng VJ
-  - name: PostVJRecruiment
-    description: API tạo mới bài viết tuyển dụng VJ
-  - name: VJGrooming
-    description: 4XS Portal for VJ grooming
-  - name: CreateVJGrooming
-    description: API tạo dữ liệu grooming
-  - name: UpdateVJGrooming
-    description: API cập nhật dữ liệu grooming
   - name: SascoPortal
     description: Project 4XS for SASCO
 

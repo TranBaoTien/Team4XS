@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: 4XS Document API VJRecruiment
+  title: 4XS Document API VJGrooming
   description: |
     Đây là API tài liệu của hệ thống Team4XS.
     Bạn có thể dùng các endpoint dưới đây để thao tác dữ liệu.
@@ -14,7 +14,7 @@ info:
   #   url: "https://opensource.org/license/mit/"
 servers:
   - url: "https://vjgrooming-dev.com/api"
-    description: "Dev server (VJ)"
+    description: "Dev server (grooming)"
     x-default: true
 paths:
   /museum-hours:

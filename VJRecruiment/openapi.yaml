@@ -168,60 +168,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         "404":
           $ref: '#/components/responses/NotFound'
-  /tickets:
-    post:
-      summary: Buy museum tickets
-      description: Purchase museum tickets for general entry or special events.
-      operationId: buyMuseumTickets
-      tags:
-        - SascoPortal
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/BuyMuseumTicketsRequest"
-            examples:
-              general_entry:
-                $ref: "#/components/examples/BuyGeneralTicketsRequestExample"
-              event_entry:
-                $ref: "#/components/examples/BuyEventTicketsRequestExample"
-      responses:
-        "201":
-          description: Created.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/BuyMuseumTicketsResponse"
-              examples:
-                general_entry:
-                  $ref: "#/components/examples/BuyGeneralTicketsResponseExample"
-                event_entry:
-                  $ref: "#/components/examples/BuyEventTicketsResponseExample"
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "404":
-          $ref: '#/components/responses/NotFound'
-  /tickets/{ticketId}/qr:
-    get:
-      summary: Get ticket QR code
-      description: Return an image of your ticket with scannable QR code. Used for event entry.
-      operationId: getTicketCode
-      tags:
-        - SascoPortal
-      parameters:
-        - $ref: "#/components/parameters/TicketId"
-      responses:
-        "200":
-          description: Scannable event ticket in image format.
-          content:
-            image/png:
-              schema:
-                $ref: "#/components/schemas/GetTicketCodeResponse"
-        "400":
-          $ref: '#/components/responses/BadRequest'
-        "404":
-          $ref: '#/components/responses/NotFound'
 components:
   schemas:
     TicketType:
@@ -713,14 +659,7 @@ tags:
     description: API lấy danh sách bài viết tuyển dụng VJ
   - name: PostVJRecruiment
     description: API tạo mới bài viết tuyển dụng VJ
-  - name: VJGrooming
-    description: 4XS Portal for VJ grooming
-  - name: CreateVJGrooming
-    description: API tạo dữ liệu grooming
   - name: UpdateVJGrooming
     description: API cập nhật dữ liệu grooming
-  - name: SascoPortal
-    description: Project 4XS for SASCO
-
 security:
   - MuseumPlaceholderAuth: []
