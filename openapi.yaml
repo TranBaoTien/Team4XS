@@ -23,6 +23,7 @@ tags:
 paths:
   /auth/login:
     post:
+      operationId: loginUser
       summary: Đăng nhập hệ thống
       tags:
         - Auth
@@ -42,6 +43,7 @@ paths:
 
   /users:
     get:
+      operationId: getUser
       summary: Lấy danh sách người dùng
       tags:
         - User
