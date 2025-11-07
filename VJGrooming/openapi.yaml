@@ -16,16 +16,6 @@ servers:
   - url: "https://vjgrooming-dev.com/api"
     description: "Dev server (VJ)"
     x-default: true
-x-tagGroups:
-  - name: VJRecruiment
-    tags:
-      - GetVJRecruiment
-      - PostVJRecruiment
-  - name: VJGrooming
-    tags:
-      - CreateVJGrooming
-      - UpdateVJGrooming
-
 paths:
   /museum-hours:
     get:
