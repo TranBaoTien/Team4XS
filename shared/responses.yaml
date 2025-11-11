@@ -1,0 +1,29 @@
+BadRequest:
+  description: Yêu cầu không hợp lệ.
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Error"
+      example:
+        status: 400
+        message: "Invalid request parameter"
+
+Unauthorized:
+  description: Không có quyền truy cập (Unauthorized).
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Error"
+      example:
+        status: 401
+        message: "Unauthorized access"
+
+NotFound:
+  description: Không tìm thấy tài nguyên được yêu cầu.
+  content:
+    application/json:
+      schema:
+        $ref: "./schemas.yaml#/Error"
+      example:
+        status: 404
+        message: "Resource not found"

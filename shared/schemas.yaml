@@ -1,0 +1,205 @@
+    TicketType:
+      description: Type of ticket being purchased. Use `general` for regular museum entry and `event` for tickets to special events.
+      type: string
+      enum:
+        - event
+        - general
+      example: event
+    Date:
+      type: string
+      format: date
+      example: '2023-10-29'
+    Email:
+      description: Email address for ticket purchaser.
+      type: string
+      format: email
+      example: museum-lover@example.com
+    Phone:
+      description: Phone number for the ticket purchaser (optional).
+      type: string
+      example: '+1(234)-567-8910'
+    BuyMuseumTicketsRequest:
+      description: Request payload used for purchasing museum tickets.
+      type: object
+      properties:
+        ticketType:
+          $ref: "./schemas.yaml#/TicketType"
+        eventId:
+          description: Unique identifier for a special event. Required if purchasing tickets for the museum's special events.
+          $ref: "./schemas.yaml#/EventId"
+        ticketDate:
+          description: Date that the ticket is valid for.
+          $ref: "./schemas.yaml#/Date"
+        email:
+          $ref: "./schemas.yaml#/Email"
+        phone:
+          $ref: "./schemas.yaml#/Phone"
+      required:
+        - ticketType
+        - ticketDate
+        - email
+    TicketMessage:
+      description: Confirmation message after a ticket purchase.
+      type: string
+      example: Museum general entry ticket purchased
+    TicketId:
+      description: Unique identifier for museum ticket. Generated when purchased.
+      type: string
+      format: uuid
+      example: a54a57ca-36f8-421b-a6b4-2e8f26858a4c
+    TicketConfirmation:
+      description: Unique confirmation code used to verify ticket purchase.
+      type: string
+      example: 'ticket-event-a98c8f-7eb12'
+    BuyMuseumTicketsResponse:
+      description: Details for a museum ticket after a successful purchase.
+      type: object
+      properties:
+        message:
+          $ref: "./schemas.yaml#/TicketMessage"
+        eventName:
+          $ref: "./schemas.yaml#/EventName"
+        ticketId:
+          $ref: "./schemas.yaml#/TicketId"
+        ticketType:
+          $ref: "./schemas.yaml#/TicketType"
+        ticketDate:
+          description: Date the ticket is valid for.
+          $ref: "./schemas.yaml#/Date"
+        confirmationCode:
+          $ref: "./schemas.yaml#/TicketConfirmation"
+      required:
+        - message
+        - ticketId
+        - ticketType
+        - ticketDate
+        - confirmationCode
+    GetTicketCodeResponse:
+      description: Image of a ticket with a QR code used for museum or event entry.
+      type: string
+      format: binary
+    GetMuseumHoursResponse:
+      description: List of museum operating hours for consecutive days.
+      type: array
+      items:
+        $ref: "./schemas.yaml#/MuseumDailyHours"
+    MuseumDailyHours:
+      description: Daily operating hours for the museum.
+      type: object
+      properties:
+        date:
+          description: Date the operating hours apply to.
+          $ref: "./schemas.yaml#/Date"
+          example: '2024-12-31'
+        timeOpen:
+          type: string
+          pattern: '^([01]\d|2[0-3]):?([0-5]\d)$'
+          description: Time the museum opens on a specific date. Uses 24 hour time format (`HH:mm`).
+          example: 09:00
+        timeClose:
+          description: Time the museum closes on a specific date. Uses 24 hour time format (`HH:mm`).
+          type: string
+          pattern: '^([01]\d|2[0-3]):?([0-5]\d)$'
+          example: 18:00
+      required:
+        - date
+        - timeOpen
+        - timeClose
+    EventId:
+      description: Identifier for a special event.
+      type: string
+      format: uuid
+      example: 3be6453c-03eb-4357-ae5a-984a0e574a54
+    EventName:
+      type: string
+      description: Name of the special event.
+      example: Pirate Coding Workshop
+    EventLocation:
+      type: string
+      description: Location where the special event is held.
+      example: Computer Room
+    EventDescription:
+      type: string
+      description: Description of the special event.
+      example: Captain Blackbeard shares his love of the C...language. And possibly Arrrrr (R lang).
+    EventDates:
+      type: array
+      items:
+        $ref: "./schemas.yaml#/Date"
+      description: List of planned dates for the special event.
+    EventPrice:
+      description: Price of a ticket for the special event.
+      type: number
+      format: float
+      example: 25
+    CreateSpecialEventRequest:
+      description: Request payload for creating new special events at the museum.
+      type: object
+      properties:
+        name:
+          $ref: "./schemas.yaml#/EventName"
+        location:
+          $ref: "./schemas.yaml#/EventLocation"
+        eventDescription:
+          $ref: "./schemas.yaml#/EventDescription"
+        dates:
+          $ref: "./schemas.yaml#/EventDates"
+        price:
+          $ref: "./schemas.yaml#/EventPrice"
+      required:
+        - name
+        - location
+        - eventDescription
+        - dates
+        - price
+    UpdateSpecialEventRequest:
+      description: Request payload for updating an existing special event. Only included fields are updated in the event.
+      type: object
+      properties:
+        name:
+          $ref: "./schemas.yaml#/EventName"
+        location:
+          $ref: "./schemas.yaml#/EventLocation"
+        eventDescription:
+          $ref: "./schemas.yaml#/EventDescription"
+        dates:
+          $ref: "./schemas.yaml#/EventDates"
+        price:
+          $ref: "./schemas.yaml#/EventPrice"
+    ListSpecialEventsResponse:
+      description: List of upcoming special events.
+      type: array
+      items:
+        $ref: "./schemas.yaml#/SpecialEventResponse"
+    SpecialEventResponse:
+      description: Information about a special event.
+      type: object
+      properties:
+        eventId:
+          $ref: "./schemas.yaml#/EventId"
+        name:
+          $ref: "./schemas.yaml#/EventName"
+        location:
+          $ref: "./schemas.yaml#/EventLocation"
+        eventDescription:
+          $ref: "./schemas.yaml#/EventDescription"
+        dates:
+          $ref: "./schemas.yaml#/EventDates"
+        price:
+          $ref: "./schemas.yaml#/EventPrice"
+      required:
+        - eventId
+        - name
+        - location
+        - eventDescription
+        - dates
+        - price
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          example: object
+        title:
+          type: string
+          example: Validation failed

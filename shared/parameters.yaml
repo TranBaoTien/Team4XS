@@ -1,0 +1,51 @@
+    PaginationPage:
+      name: page
+      in: query
+      description: Page number to retrieve.
+      schema:
+        type: integer
+        default: 1
+        example: 2
+    PaginationLimit:
+      name: limit
+      in: query
+      description: Number of days per page.
+      schema:
+        type: integer
+        default: 10
+        maximum: 30
+        example: 15
+    EventId:
+      name: eventId
+      in: path
+      description: Identifier for a special event.
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: dad4bce8-f5cb-4078-a211-995864315e39
+    StartDate:
+      name: startDate
+      in: query
+      description: Starting date to retrieve future operating hours from. Defaults to today's date.
+      schema:
+        type: string
+        format: date
+        example: '2023-02-23'
+    EndDate:
+      name: endDate
+      in: query
+      description: End of a date range to retrieve special events for. Defaults to 7 days after `startDate`.
+      schema:
+        type: string
+        format: date
+        example: '2023-04-18'
+    TicketId:
+      name: ticketId
+      in: path
+      description: Identifier for a ticket to a museum event. Used to generate ticket image.
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: a54a57ca-36f8-421b-a6b4-2e8f26858a4c

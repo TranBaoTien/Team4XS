@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start:sasco": "npx redocly preview -d SascoPortal",
+    "start:grooming": "npx redocly preview -d VJGrooming",
+    "start:recruitment": "npx redocly preview -d VJRecruitment",
+    "start": "npm run start:sasco"
+  }
+}
