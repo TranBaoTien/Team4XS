@@ -1,0 +1,33 @@
+extends:
+  - minimal
+
+apis:
+  sascoportal:
+    root: SascoPortal/openapi.yaml
+  vjgrooming:
+    root: VJGrooming/openapi.yaml
+  vjrecruiment:
+    root: VJRecruiment/openapi.yaml
+rules:
+  operation-tag-defined: error
+  no-invalid-schema-examples: error
+  no-invalid-media-type-examples: error
+  scalar-property-missing-example: error
+  rule/operation-summary-sentence-case:
+    subject:
+      type: Operation
+      property: summary
+    message: Operation summary must be sentence cased.
+    assertions:
+      pattern: /^([A-Z]{2,}|[A-Z][^A-Z]*)\b(\s+(?:[A-Z]{2,}|[^A-Z]*)\b)*$/
+  rule/example-summary-sentence-case:
+    subject:
+      type: Example
+      property: summary
+    message: Example summary must be sentence cased.
+    assertions:
+      pattern: /^([A-Z]{2,}|[A-Z][^A-Z]*)\b(\s+(?:[A-Z]{2,}|[^A-Z]*)\b)*$/
+ignore:
+  # - .github
+  - node_modules
+telemetry: off
