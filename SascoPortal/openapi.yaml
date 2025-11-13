@@ -13,9 +13,8 @@ info:
   #   name: MIT
   #   url: "https://opensource.org/license/mit/"
 servers:
-  - url: "https://sasco-dev.com/api"
-    description: "Dev server (sasco)"
-    x-default: true
+  - url: https://api.example.com
+    description: Production server
 paths:
   /tickets:
     post:
